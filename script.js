@@ -61,7 +61,6 @@ let mainFunc = function () {
 
     let choiceLength = prompt('Please choose a length of at least 8 characters and no more than 128 characters')
 
-    while (choiceLength === typeof('choicelength') )
 
   while (parseInt(choiceLength) < 8 || parseInt(choiceLength) > 128) 
   {choiceLength = prompt('Please choose a length of at least 8 characters and no more than 128 characters')}
@@ -129,6 +128,21 @@ numberChoice = false;}
 else {alert('invalid input, defaulting to no') 
 console.log('user chose number set false')
 numberChoice = false;}
+
+// SPECIAL PROMPT
+let funkyQuestion = prompt('Would you like to use any special characters? yes/no')
+
+if (funkyQuestion.toLowerCase().trim() === 'yes') 
+{ console.log(`user chose special char`);
+specialChoice = true;}
+
+else if (funkyQuestion.toLowerCase().trim() === 'no')
+{ console.log('user chose special char set false')
+specialChoice = false;}
+
+else {alert('invalid input, defaulting to no') 
+console.log('user chose special char set false')
+specialChoice = false;}
 
 
 
