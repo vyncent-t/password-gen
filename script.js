@@ -15,33 +15,10 @@
 
 
 const chosenPassword = [''];
-
-//Generates a random number
-function generateRandomNumber() {
-  let genNum = String.fromCharCode(Math.floor(Math.random() * 10) + 48);
-  return genNum;
-}
-
-//Generates random symbol
-function generateRandomSymbol()  {
-  const symbols = " !#$%&()*+,-./:;<=>?@[\]^_{|}~ "
-  let genSymbol = symbols[Math.floor(Math.random() * symbols.length)];
-  return genSymbol;
-}
-
-//Generates random letters
-function generateLowerCase() {
-  let genLower = String.fromCharCode(Math.floor(Math.random() * 26) + 97);
-  return genLower;
-}
-
-function generateUpperCase() {
-  let genUpper = String.fromCharCode(Math.floor(Math.random() * 26) + 65);
-  return genUpper;
-}
+const symbols = " !#$%&()*+,-./:;<=>?@[\]^_{|}~ "
 
 //Number user chooses for length
-let passwordOptions;
+// let passwordOptions;
 let passwordArray;
 let passwordLength;
 let lowerChoice;
@@ -53,8 +30,54 @@ let userFont;
 let choiceLength;
 let userDefault;
 let randomizer;
+let genLower;
+let genUpper;
+let genNum;
+let genSymbol;
+let finalUserPassword
+
+let passwordOptions = {
+  lengthOption: choiceLength,
+  lowerOption: lowerChoice,
+  upperOption: upperChoice,
+  numberOption: numberChoice,
+  specialOption: specialChoice,
+  defaultOption: userDefault,
+  
+}
+
+let passwordFreeArray = [];
 
 
+//Generates a random number
+function generateRandomNumber() {
+  genNum = String.fromCharCode(Math.floor(Math.random() * 10) + 48);
+  passwordFreeArray.push(genNum)
+}
+
+//Generates random symbol
+function generateRandomSymbol()  {
+  genSymbol = symbols[Math.floor(Math.random() * symbols.length)];
+  passwordFreeArray.push(genSymbol)
+}
+
+//Generates random letters
+function generateLowerCase() {
+  genLower = String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+  passwordFreeArray.push(genLower)
+}
+
+function generateUpperCase() {
+  genUpper = String.fromCharCode(Math.floor(Math.random() * 26) + 65);
+  passwordFreeArray.push(genUpper)
+}
+
+
+
+
+
+
+// return passwordOptions;
 
 let questionsPrompt = function () {
 
@@ -63,7 +86,7 @@ let questionsPrompt = function () {
   while (userLength.toLowerCase().trim() !== "yes")
   {userLength = prompt('You must enter yes to continue')}
 
-    let choiceLength = prompt('Please choose a length of at least 8 characters and no more than 128 characters')
+    choiceLength = prompt('Please choose a length of at least 8 characters and no more than 128 characters')
 
 
   while (parseInt(choiceLength) < 8 || parseInt(choiceLength) > 128) 
@@ -152,56 +175,45 @@ if (!lowerChoice && !upperChoice && !numberChoice && !specialChoice) {
   alert('using default password settings')
   userDefault = true;
 }
-
-
-  let passwordOptions = {
-    lengthOption: choiceLength,
-    lowerOption: lowerChoice,
-    upperOption: upperChoice,
-    numberOption: numberChoice,
-    specialOption: specialChoice,
-    defaultOption: userDefault,
   }
-  console.log(`user options as chosen ${passwordOptions}`)
-  return passwordOptions;
-  }
+// END OF FUNCTION
+
 
   function createPassword () {
-    
+
+
 
     //NEED TO PUSH GEN OUTPUT INTO ARROW X AMMOUNT OF TIMES?
-    let passwordArray = [];
-    console.log(passwordArray)
 
 
-    if (passwordOptions.lowerOption === true) {
+    if (lowerChoice === true) {
       for ( let i = 0; i < choiceLength; i++){
         generateLowerCase();
-        passwordArray.push(genLower)
+        // passwordFreeArray.push(genLower)
       }
     }
 
 
-    if (passwordOptions.upperOption === true) {
+    if (upperChoice === true) {
       for ( let i = 0; i < choiceLength; i++){
         generateUpperCase();
-        passwordArray.push(genUpper)
+        // passwordFreeArray.push(genUpper)
       }
     }
 
 
-    if (passwordOptions.numberOption === true) {
+    if (numberChoice === true) {
       for ( let i = 0; i < choiceLength; i++){
         generateRandomNumber();
-        passwordArray.push(genNum)
+        // passwordFreeArray.push(genNum)
       }
     }
 
     
-    if (passwordOptions.specialOption === true) {
+    if (specialChoice === true) {
       for ( let i = 0; i < choiceLength; i++){
         generateRandomSymbol();
-        passwordArray.push(genSymbol)
+        // passwordFreeArray.push(genSymbol)
       }
     }
     
@@ -213,17 +225,21 @@ if (!lowerChoice && !upperChoice && !numberChoice && !specialChoice) {
 
     for ( let i = 0; i < choiceLength; i++) {
       let randomizer = Math.ceil(Math.random() * choiceLength);
-      userPassword.push(passwordArray[randomizer])
+      userPassword.push(passwordFreeArray[randomizer])
     }
 
-    console.log(passwordArray)
-    console.log(userPassword)
+    console.log(`The password bank ${passwordFreeArray}`)
+    console.log(`The done password ${userPassword}`)
+
+    finalUserPassword = userPassword.join('')
+    console.log(`Your new password is:  ${finalUserPassword}`)
 
 
   }
 
 
 questionsPrompt();
+createPassword();
 
 
 
