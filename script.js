@@ -1,17 +1,6 @@
-// Assignment Code//
-// var generateBtn = document.querySelector("#generate");
 
-// Write password to the #password input//
-// function writePassword() {
-//   var password = generatePassword();
-//   var passwordText = document.querySelector("#password");
 
-//   passwordText.value = password;
 
-// }
-
-// Add event listener to generate button//
-// generateBtn.addEventListener("click", writePassword);
 
 
 const chosenPassword = [''];
@@ -187,7 +176,7 @@ if (!lowerChoice && !upperChoice && !numberChoice && !specialChoice) {
 
 
     if (lowerChoice === true) {
-      for ( let i = 0; i < choiceLength; i++){
+      for ( let i = 0; i < 10; i++){
         generateLowerCase();
         // passwordFreeArray.push(genLower)
       }
@@ -195,7 +184,7 @@ if (!lowerChoice && !upperChoice && !numberChoice && !specialChoice) {
 
 
     if (upperChoice === true) {
-      for ( let i = 0; i < choiceLength; i++){
+      for ( let i = 0; i < 10; i++){
         generateUpperCase();
         // passwordFreeArray.push(genUpper)
       }
@@ -203,7 +192,7 @@ if (!lowerChoice && !upperChoice && !numberChoice && !specialChoice) {
 
 
     if (numberChoice === true) {
-      for ( let i = 0; i < choiceLength; i++){
+      for ( let i = 0; i < 10; i++){
         generateRandomNumber();
         // passwordFreeArray.push(genNum)
       }
@@ -211,7 +200,7 @@ if (!lowerChoice && !upperChoice && !numberChoice && !specialChoice) {
 
     
     if (specialChoice === true) {
-      for ( let i = 0; i < choiceLength; i++){
+      for ( let i = 0; i < 10; i++){
         generateRandomSymbol();
         // passwordFreeArray.push(genSymbol)
       }
@@ -224,7 +213,7 @@ if (!lowerChoice && !upperChoice && !numberChoice && !specialChoice) {
     let userPassword = [];
 
     for ( let i = 0; i < choiceLength; i++) {
-      let randomizer = Math.ceil(Math.random() * choiceLength);
+      let randomizer = Math.floor(Math.random() * choiceLength)+1;
       userPassword.push(passwordFreeArray[randomizer])
     }
 
@@ -233,18 +222,30 @@ if (!lowerChoice && !upperChoice && !numberChoice && !specialChoice) {
 
     finalUserPassword = userPassword.join('')
     console.log(`Your new password is:  ${finalUserPassword}`)
+    alert(`Your new password is:  ${finalUserPassword}`)
 
 
   }
 
-
+function generatePassword() {
 questionsPrompt();
 createPassword();
+}
 
 
+// Assignment Code//
+var generateBtn = document.querySelector("#generate");
 
+// Write password to the #password input//
+function writePassword() {
+  var password = generatePassword();
+  var passwordText = document.querySelector("#password");
 
+  passwordText.value = password;
 
+}
 
+// Add event listener to generate button//
+generateBtn.addEventListener("click", writePassword);
 
 
