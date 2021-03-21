@@ -1,8 +1,3 @@
-
-
-
-
-
 const chosenPassword = [''];
 const symbols = " !#$%&()*+,-./:;<=>?@[\]^_{|}~ "
 
@@ -61,13 +56,6 @@ function generateUpperCase() {
   passwordFreeArray.push(genUpper)
 }
 
-
-
-
-
-
-// return passwordOptions;
-
 let questionsPrompt = function () {
 
   let userLength = prompt('Do you want to set a length? yes/no')
@@ -86,7 +74,6 @@ let questionsPrompt = function () {
   {console.log(`user set length to ${choiceLength}`)
     alert(`user set length to ${choiceLength}`)
     passwordLength = choiceLength
-    // return passwordLength
   }
 
 
@@ -113,8 +100,7 @@ if (userFont.toLowerCase().trim() === 'yes')
     else {alert('invalid input, defaulting to no') 
     console.log('user chose lowercase set false')
     lowerChoice = false;}
-      
-// WILL NEED TO REPEAT THIS LINE TO MAKE FORMAT
+
 // UPPERCASE PROMPT
     let upperQuestion = prompt('Would you like to use any uppercase letters? yes/no')
 
@@ -131,50 +117,43 @@ if (userFont.toLowerCase().trim() === 'yes')
     upperChoice = false;}
   
 // NUMBERS PROMPTS
-let interQuestion = prompt('Would you like to use any numbers? yes/no')
+    let interQuestion = prompt('Would you like to use any numbers? yes/no')
 
-if (interQuestion.toLowerCase().trim() === 'yes') 
-{ console.log(`user chose number`);
-numberChoice = true;}
+    if (interQuestion.toLowerCase().trim() === 'yes') 
+    { console.log(`user chose number`);
+    numberChoice = true;}
 
-else if (interQuestion.toLowerCase().trim() === 'no')
-{ console.log('user chose number set false')
-numberChoice = false;}
+    else if (interQuestion.toLowerCase().trim() === 'no')
+    { console.log('user chose number set false')
+    numberChoice = false;}
 
-else {alert('invalid input, defaulting to no') 
-console.log('user chose number set false')
-numberChoice = false;}
+    else {alert('invalid input, defaulting to no') 
+    console.log('user chose number set false')
+    numberChoice = false;}
 
 // SPECIAL PROMPT
-let funkyQuestion = prompt('Would you like to use any special characters? yes/no')
+  let funkyQuestion = prompt('Would you like to use any special characters? yes/no')
 
-if (funkyQuestion.toLowerCase().trim() === 'yes') 
-{ console.log(`user chose special char`);
-specialChoice = true;}
+  if (funkyQuestion.toLowerCase().trim() === 'yes') 
+  { console.log(`user chose special char`);
+  specialChoice = true;}
 
-else if (funkyQuestion.toLowerCase().trim() === 'no')
-{ console.log('user chose special char set false')
-specialChoice = false;}
+  else if (funkyQuestion.toLowerCase().trim() === 'no')
+  { console.log('user chose special char set false')
+  specialChoice = false;}
 
-else {alert('invalid input, defaulting to no') 
-console.log('user chose special char set false')
-specialChoice = false;}
+  else {alert('invalid input, defaulting to no') 
+  console.log('user chose special char set false')
+  specialChoice = false;}
 
-if (!lowerChoice && !upperChoice && !numberChoice && !specialChoice) {
+  if (!lowerChoice && !upperChoice && !numberChoice && !specialChoice) {
   alert('using default password settings')
-  userDefault = true;
-}
+  userDefault = true;}
   }
 // END OF FUNCTION
 
 
   function createPassword () {
-
-
-
-    //NEED TO PUSH GEN OUTPUT INTO ARROW X AMMOUNT OF TIMES?
-
-
     if (lowerChoice === true) {
       for ( let i = 0; i < 10; i++){
         generateLowerCase();
@@ -205,17 +184,11 @@ if (!lowerChoice && !upperChoice && !numberChoice && !specialChoice) {
         // passwordFreeArray.push(genSymbol)
       }
     }
-    
-    
-
-
 
     let userPassword = [];
-
     for ( let i = 0; i < choiceLength; i++) {
       let randomizer = Math.floor(Math.random() * choiceLength)+1;
-      userPassword.push(passwordFreeArray[randomizer])
-    }
+      userPassword.push(passwordFreeArray[randomizer])}
 
     console.log(`The password bank ${passwordFreeArray}`)
     console.log(`The done password ${userPassword}`)
@@ -223,8 +196,6 @@ if (!lowerChoice && !upperChoice && !numberChoice && !specialChoice) {
     finalUserPassword = userPassword.join('')
     console.log(`Your new password is:  ${finalUserPassword}`)
     alert(`Your new password is:  ${finalUserPassword}`)
-
-
   }
 
 function generatePassword() {
@@ -242,7 +213,6 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button//
