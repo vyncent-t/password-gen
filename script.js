@@ -41,6 +41,8 @@ function generateUpperCase() {
 }
 
 //Number user chooses for length
+let passwordOptions;
+let passwordArray;
 let passwordLength;
 let lowerChoice;
 let upperChoice;
@@ -49,10 +51,12 @@ let specialChoice;
 let userLength;
 let userFont;
 let choiceLength;
+let userDefault;
+let randomizer;
 
 
 
-let mainFunc = function () {
+let questionsPrompt = function () {
 
   let userLength = prompt('Do you want to set a length? yes/no')
 
@@ -144,14 +148,82 @@ else {alert('invalid input, defaulting to no')
 console.log('user chose special char set false')
 specialChoice = false;}
 
+if (!lowerChoice && !upperChoice && !numberChoice && !specialChoice) {
+  alert('using default password settings')
+  userDefault = true;
+}
+
+
+  let passwordOptions = {
+    lengthOption: choiceLength,
+    lowerOption: lowerChoice,
+    upperOption: upperChoice,
+    numberOption: numberChoice,
+    specialOption: specialChoice,
+    defaultOption: userDefault,
+  }
+  console.log(`user options as chosen ${passwordOptions}`)
+  return passwordOptions;
+  }
+
+  function createPassword () {
+    
+
+    //NEED TO PUSH GEN OUTPUT INTO ARROW X AMMOUNT OF TIMES?
+    let passwordArray = [];
+    console.log(passwordArray)
+
+
+    if (passwordOptions.lowerOption === true) {
+      for ( let i = 0; i < choiceLength; i++){
+        generateLowerCase();
+        passwordArray.push(genLower)
+      }
+    }
+
+
+    if (passwordOptions.upperOption === true) {
+      for ( let i = 0; i < choiceLength; i++){
+        generateUpperCase();
+        passwordArray.push(genUpper)
+      }
+    }
+
+
+    if (passwordOptions.numberOption === true) {
+      for ( let i = 0; i < choiceLength; i++){
+        generateRandomNumber();
+        passwordArray.push(genNum)
+      }
+    }
+
+    
+    if (passwordOptions.specialOption === true) {
+      for ( let i = 0; i < choiceLength; i++){
+        generateRandomSymbol();
+        passwordArray.push(genSymbol)
+      }
+    }
+    
+    
+
+
+
+    let userPassword = [];
+
+    for ( let i = 0; i < choiceLength; i++) {
+      let randomizer = Math.ceil(Math.random() * choiceLength);
+      userPassword.push(passwordArray[randomizer])
+    }
+
+    console.log(passwordArray)
+    console.log(userPassword)
 
 
   }
 
 
- 
-
-mainFunc();
+questionsPrompt();
 
 
 
