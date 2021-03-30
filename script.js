@@ -18,6 +18,7 @@ let genUpper;
 let genNum;
 let genSymbol;
 let finalUserPassword;
+let password;
 
 let passwordOptions = {
 	lengthOption: choiceLength,
@@ -69,7 +70,6 @@ let questionsPrompt = function() {
 
 	if (parseInt(choiceLength) >= 8 || parseInt(choiceLength) <= 128) {
 		console.log(`user set length to ${choiceLength}`);
-		// alert(`user set length to ${choiceLength}`);
 		passwordLength = parseInt(choiceLength);
 	}
 
@@ -163,6 +163,7 @@ function createPassword() {
 	finalUserPassword = userPassword.join('');
 	console.log(`Your new password is:  ${finalUserPassword}`);
 	passwordText.value = finalUserPassword;
+	password = finalUserPassword
 }
 
 function generatePassword() {
