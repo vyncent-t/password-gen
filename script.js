@@ -1,8 +1,7 @@
 const chosenPassword = [ '' ];
 const symbols = ' !#$%&()*+,-./:;<=>?@[]^_{|}~ ';
 
-//Number user chooses for length
-// let passwordOptions;
+let passwordText = document.querySelector('#password');
 let passwordArray;
 let passwordLength;
 let lowerChoice;
@@ -64,88 +63,58 @@ let questionsPrompt = function() {
     choiceLength = 8;
   }
 
-	while (parseInt(choiceLength) < 8 || parseInt(choiceLength) > 128 || isNaN(choiceLength)) {
+	while (parseInt(choiceLength) < 8 || parseInt(choiceLength) > 128 || isNaN(choiceLength) || !choiceLength) {
 		choiceLength = prompt('Please choose a length of at least 8 characters and no more than 128 characters');
 	}
 
 	if (parseInt(choiceLength) >= 8 || parseInt(choiceLength) <= 128) {
 		console.log(`user set length to ${choiceLength}`);
-		alert(`user set length to ${choiceLength}`);
+		// alert(`user set length to ${choiceLength}`);
 		passwordLength = parseInt(choiceLength);
 	}
 
-	let userFont = prompt('Would you like to use any lowercase, uppercase, numeric, and/or special characters? yes/no');
+	// LOWERCASE
+	if (passwordLength) {
+		lowerChoice = confirm('would you like to use any lowercase letters? yes/no');
+	} 
 
-	while (userFont.toLowerCase().trim() !== 'yes') {
-		{
-			userFont = prompt(
-				'You must enter yes to continue, it is impossible to make a password that contains no letters, numbers, or special characters'
-			);
-		}
-	}
-
-	// LOWERCASE PRMOPT
-	if (userFont.toLowerCase().trim() === 'yes') {
-		lowerChoice = prompt('would you like to use any lowercase letters? yes/no');
-	} else {
-		alert('invalid input, defaulting to no');
-		console.log('user chose lowercase set false');
-		lowerChoice = false;
-	}
-
-	if (lowerChoice.toLowerCase().trim() === 'yes') {
+		if (lowerChoice) {
 		console.log(`user chose lowercase`);
-		lowerChoice = true;
-	} else if (lowerChoice.toLowerCase().trim() === 'no') {
-		console.log('user chose lowercase set false');
-		lowerChoice = false;
-	} else {
-		alert('invalid input, defaulting to no');
+		lowerChoice = true;}
+	else {
 		console.log('user chose lowercase set false');
 		lowerChoice = false;
 	}
 
-	// UPPERCASE PROMPT
-	let upperQuestion = prompt('Would you like to use any uppercase letters? yes/no');
+	// UPPERCASE
+	let upperQuestion = confirm('Would you like to use any uppercase letters? yes/no');
 
-	if (upperQuestion.toLowerCase().trim() === 'yes') {
+	if (upperQuestion) {
 		console.log(`user chose uppercase`);
 		upperChoice = true;
-	} else if (upperQuestion.toLowerCase().trim() === 'no') {
-		console.log('user chose uppercase set false');
-		upperChoice = false;
 	} else {
-		alert('invalid input, defaulting to no');
 		console.log('user chose uppercase set false');
 		upperChoice = false;
 	}
 
-	// NUMBERS PROMPTS
-	let interQuestion = prompt('Would you like to use any numbers? yes/no');
+	// NUMBERS
+	let interQuestion = confirm('Would you like to use any numbers? yes/no');
 
-	if (interQuestion.toLowerCase().trim() === 'yes') {
+	if (interQuestion) {
 		console.log(`user chose number`);
 		numberChoice = true;
-	} else if (interQuestion.toLowerCase().trim() === 'no') {
-		console.log('user chose number set false');
-		numberChoice = false;
 	} else {
-		alert('invalid input, defaulting to no');
 		console.log('user chose number set false');
 		numberChoice = false;
 	}
 
-	// SPECIAL PROMPT
-	let funkyQuestion = prompt('Would you like to use any special characters? yes/no');
+	// SPECIAL
+	let funkyQuestion = confirm('Would you like to use any special characters? yes/no');
 
-	if (funkyQuestion.toLowerCase().trim() === 'yes') {
+	if (funkyQuestion) {
 		console.log(`user chose special char`);
 		specialChoice = true;
-	} else if (funkyQuestion.toLowerCase().trim() === 'no') {
-		console.log('user chose special char set false');
-		specialChoice = false;
 	} else {
-		alert('invalid input, defaulting to no');
 		console.log('user chose special char set false');
 		specialChoice = false;
 	}
@@ -161,28 +130,24 @@ function createPassword() {
 	if (lowerChoice === true) {
 		for (let i = 0; i < 10; i++) {
 			generateLowerCase();
-			// passwordFreeArray.push(genLower)
 		}
 	}
 
 	if (upperChoice === true) {
 		for (let i = 0; i < 10; i++) {
 			generateUpperCase();
-			// passwordFreeArray.push(genUpper)
 		}
 	}
 
 	if (numberChoice === true) {
 		for (let i = 0; i < 10; i++) {
 			generateRandomNumber();
-			// passwordFreeArray.push(genNum)
 		}
 	}
 
 	if (specialChoice === true) {
 		for (let i = 0; i < 10; i++) {
 			generateRandomSymbol();
-			// passwordFreeArray.push(genSymbol)
 		}
 	}
 
@@ -197,7 +162,7 @@ function createPassword() {
 
 	finalUserPassword = userPassword.join('');
 	console.log(`Your new password is:  ${finalUserPassword}`);
-	alert(`Your new password is:  ${finalUserPassword}`);
+	passwordText.value = finalUserPassword;
 }
 
 function generatePassword() {
@@ -208,13 +173,6 @@ function generatePassword() {
 // Assignment Code//
 var generateBtn = document.querySelector('#generate');
 
-// Write password to the #password input//
-function writePassword() {
-	var password = generatePassword();
-	var passwordText = document.querySelector('#password');
-
-	passwordText.value = password;
-}
 
 // Add event listener to generate button//
-generateBtn.addEventListener('click', writePassword);
+generateBtn.addEventListener('click', generatePassword);
